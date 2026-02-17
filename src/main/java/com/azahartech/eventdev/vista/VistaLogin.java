@@ -26,5 +26,14 @@ public class VistaLogin extends JFrame {
         pnlFormulario.add(lblPassword);
         pnlFormulario.add(txtPassword);
         lienzo.add(pnlFormulario, BorderLayout.CENTER);
+
+        //Titulo
+        JLabel lblTitulo = new JLabel("Bienvenido a EventDEV");
+        //Cambiar la fuente
+        lblTitulo.setFont(new Font("Arial", Font.BOLD, 18));
+        //Alineación horizontal al centro
+        lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+        //Añadir la etiqueta a la zona NORTH
+        add(lblTitulo, BorderLayout.NORTH);
     }
 }
