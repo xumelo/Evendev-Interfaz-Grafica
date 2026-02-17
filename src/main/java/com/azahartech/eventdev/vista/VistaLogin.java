@@ -34,6 +34,17 @@ public class VistaLogin extends JFrame {
         //Alineación horizontal al centro
         lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
         //Añadir la etiqueta a la zona NORTH
-        add(lblTitulo, BorderLayout.NORTH);
+        lienzo.add(lblTitulo, BorderLayout.NORTH);
+
+        //Botones
+        JPanel pnlBotones =new JPanel();
+        //Alineacion al centro
+        pnlBotones.setLayout(new FlowLayout(FlowLayout.CENTER));
+        //Crear Botones
+        JButton btnLogin=new JButton("Entrar");
+        JButton btnRegistro=new JButton("Registrarse");
+        pnlBotones.add(btnLogin);
+        pnlBotones.add(btnRegistro);
+        lienzo.add(pnlBotones,BorderLayout.SOUTH);
     }
 }
