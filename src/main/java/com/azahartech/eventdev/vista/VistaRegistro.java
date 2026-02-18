@@ -8,9 +8,12 @@ public class VistaRegistro extends JFrame {
     public VistaRegistro(){
         this.setTitle("Registro");
         this.setSize(400, 300);
+
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
+
         lienzo.setLayout(new BorderLayout(10, 10));
+        ((JPanel)this.getContentPane()).setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         initUI();
     }
     private void initUI(){
@@ -26,6 +29,7 @@ public class VistaRegistro extends JFrame {
         JPasswordField txtPasswordConfirmar = new JPasswordField();
         JLabel lblEdad = new JLabel("Edad:");
         JTextField txtEdad = new JTextField();
+
         pnlFormulario.add(lblNombre);
         pnlFormulario.add(txtNombre);
         pnlFormulario.add(lblEmail);
@@ -48,6 +52,8 @@ public class VistaRegistro extends JFrame {
         pnlBotones.add(btnGuardar);
         pnlBotones.add(btnCancelar);
         lienzo.add(pnlBotones,BorderLayout.SOUTH);
+
+
         //Titulo
         JLabel lblTitulo = new JLabel("Registro a EventDEV");
         //Cambiar la fuente

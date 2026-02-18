@@ -11,12 +11,13 @@ public class VistaLogin extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         lienzo.setLayout(new BorderLayout(10, 10));
+        ((JPanel)this.getContentPane()).setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         initUI();
     }
     private void initUI(){
 
         JPanel pnlFormulario=new JPanel();
-        pnlFormulario.setLayout(new GridLayout(2,2,10,10));
+        pnlFormulario.setLayout(new GridLayout(2,2,5,5));
         JLabel lblEmail = new JLabel("Email:");
         JTextField txtEmail = new JTextField();
         JLabel lblPassword = new JLabel("Contraseña:");
