@@ -7,7 +7,7 @@ public class VistaLogin extends JFrame {
     private Container lienzo = this.getContentPane();
     public VistaLogin() {
         this.setTitle("Acceso a EventDEV");
-        this.setSize(400, 300);
+        this.setSize(400, 200);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         lienzo.setLayout(new BorderLayout(10, 10));
