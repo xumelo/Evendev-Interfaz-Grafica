@@ -1,6 +1,9 @@
 package com.azahartech.eventdev.vista;
 
 import javax.swing.*;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 
 public class TarjetaEvento extends JPanel {
@@ -13,24 +16,25 @@ public class TarjetaEvento extends JPanel {
         this.precio=precio;
 
         this.setLayout(new BorderLayout());
-        this.setBorder(BorderFactory.createLineBorder(Color.cyan));
-        JPanel pnlPanel=new JPanel();
-        JTextArea txtTitulo=new JTextArea(titulo);
+        this.setBorder(BorderFactory.createLineBorder(Color.yellow));
+//        this.setBorder(new CompoundBorder(new LineBorder(Color.LIGHT_GRAY, 1), new EmptyBorder(10,10,10,10)));
+        JLabel lblPanel=new JLabel();
         JTextArea txtFecha=new JTextArea(fecha);
-        pnlPanel.add(txtTitulo);
-        pnlPanel.add(txtFecha);
-        this.add(pnlPanel,BorderLayout.CENTER);
+        lblPanel.add(txtFecha);
+        this.add(txtFecha,BorderLayout.CENTER);
 
-        JPanel pnlBoton=new JPanel();
-        JButton btnComprar=new JButton("Comprar"+precio);
-        pnlBoton.add(btnComprar);
-        this.add(pnlBoton,BorderLayout.SOUTH);
 
-        JPanel pnlTitulo=new JPanel();
+        JButton btnComprar=new JButton("Comprar "+precio);
+        this.add(btnComprar,BorderLayout.SOUTH);
+
         JLabel lblTitulo=new JLabel(titulo);
         lblTitulo.setFont(new Font("Arial", Font.BOLD, 18));
         //Alineación horizontal al centro
-        lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+        lblTitulo.setHorizontalAlignment(SwingConstants.LEFT);
+        this.add(lblTitulo,BorderLayout.NORTH);
+
+
+
 
     }
 }

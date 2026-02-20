@@ -46,6 +46,19 @@ public class VistaDashboard extends JFrame {
         pnlCentral.setBackground(Color.white);
         pnlPrincipal.add(pnlCentral,BorderLayout.CENTER);
 
+        //Scroll
+        JPanel listaPanel=new JPanel();
+        listaPanel.setLayout(new GridLayout(0,1));
+
+        for (int i=0;i<10;i++){
+            TarjetaEvento tarjeta1=new TarjetaEvento("Prueba1","2026-05-10","2.00");
+
+            listaPanel.add(tarjeta1);
+        }
+        JScrollPane scroll = new JScrollPane(listaPanel);
+        scroll.getVerticalScrollBar().setUnitIncrement(16);
+        scroll.setBorder(BorderFactory.createCompoundBorder(scroll.getBorder(), BorderFactory.createEmptyBorder(10,10,10,10)));
+        pnlPrincipal.add(scroll,BorderLayout.CENTER);
 
         lienzo.add(pnlPrincipal);
 
