@@ -4,6 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 
 public class VistaLogin extends JFrame {
+    private JTextField emailField;
+    private JPasswordField contrasenyaField;
+    private JButton loginButton;
+    private JButton registroButton;
+    private JButton salirButton;
     private Container lienzo = this.getContentPane();
     public VistaLogin() {
         this.setTitle("Acceso a EventDEV");
@@ -16,36 +21,72 @@ public class VistaLogin extends JFrame {
     }
     private void initUI(){
 
-        JPanel pnlFormulario=new JPanel();
-        pnlFormulario.setLayout(new GridLayout(2,2,5,5));
-        JLabel lblEmail = new JLabel("Email:");
-        JTextField txtEmail = new JTextField();
-        JLabel lblPassword = new JLabel("Contraseña:");
-        JPasswordField txtPassword = new JPasswordField();
-        pnlFormulario.add(lblEmail);
-        pnlFormulario.add(txtEmail);
-        pnlFormulario.add(lblPassword);
-        pnlFormulario.add(txtPassword);
-        lienzo.add(pnlFormulario, BorderLayout.CENTER);
+        JPanel formularioPanel =new JPanel();
+        formularioPanel.setLayout(new GridLayout(2,2,5,5));
+        JLabel emailLabel = new JLabel("Email:");
+        this.emailField = new JTextField();
+        JLabel passwordLabel = new JLabel("Contraseña:");
+        this.contrasenyaField = new JPasswordField();
+        formularioPanel.add(emailLabel);
+        formularioPanel.add(emailField);
+        formularioPanel.add(passwordLabel);
+        formularioPanel.add(contrasenyaField);
+        lienzo.add(formularioPanel, BorderLayout.CENTER);
 
         //Titulo
-        JLabel lblTitulo = new JLabel("Bienvenido a EventDEV");
+        JLabel tituloLabel = new JLabel("Bienvenido a EventDEV");
         //Cambiar la fuente
-        lblTitulo.setFont(new Font("Arial", Font.BOLD, 18));
+        tituloLabel.setFont(new Font("Arial", Font.BOLD, 18));
         //Alineación horizontal al centro
-        lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+        tituloLabel.setHorizontalAlignment(SwingConstants.CENTER);
         //Añadir la etiqueta a la zona NORTH
-        lienzo.add(lblTitulo, BorderLayout.NORTH);
+        lienzo.add(tituloLabel, BorderLayout.NORTH);
 
         //Botones
-        JPanel pnlBotones =new JPanel();
+        JPanel botonesPanel =new JPanel();
         //Alineacion al centro
-        pnlBotones.setLayout(new FlowLayout(FlowLayout.CENTER));
+        botonesPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
         //Crear Botones
-        JButton btnLogin=new JButton("Entrar");
-        JButton btnRegistro=new JButton("Registrarse");
-        pnlBotones.add(btnLogin);
-        pnlBotones.add(btnRegistro);
-        lienzo.add(pnlBotones,BorderLayout.SOUTH);
+        this.loginButton=new JButton("Entrar");
+        this.registroButton=new JButton("Registrarse");
+        this.salirButton=new JButton("Salir");
+        botonesPanel.add(loginButton);
+        botonesPanel.add(registroButton);
+        botonesPanel.add(salirButton);
+        lienzo.add(botonesPanel,BorderLayout.SOUTH);
+        initListeners();
+    }
+    private void initListeners(){
+        salirButton.addActionListener(e -> intentarSalir());
+        contrasenyaField.addActionListener(e -> intentarLogin());
+        loginButton.addActionListener(e -> intentarLogin());
+    }
+    private void intentarLogin() {
+
+        String email = emailField.getText();
+        String contrasenya = new String(contrasenyaField.getPassword());
+        if (email.equals("admin@eventdev.com") && contrasenya.equals("1234")) {
+            JOptionPane.showMessageDialog(this,
+                    "¡Bienvenido al sistema, Admin!",
+                    "Acceso concedido",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "Usuario o contraseña incorrectos.",
+                    "Acceso denegado",
+                    JOptionPane.ERROR_MESSAGE);
+            contrasenyaField.setText("");
+            contrasenyaField.requestFocus();
+        }
+    }
+    private void intentarSalir(){
+        // Preguntar antes de salir
+        int confirmar = JOptionPane.showConfirmDialog(this,
+                "¿Estás seguro de que quieres cerrar la aplicación?",
+                "Confirmar salida",
+                JOptionPane.YES_NO_OPTION);
+        if (confirmar == JOptionPane.YES_OPTION) {
+            System.exit(0); // Cierra la JVM
+        }
     }
 }

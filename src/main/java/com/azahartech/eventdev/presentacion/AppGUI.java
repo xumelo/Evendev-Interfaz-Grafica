@@ -8,8 +8,14 @@ import javax.swing.*;
 
 public class AppGUI {
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {new VistaLogin().setVisible(true);});
-        SwingUtilities.invokeLater(() -> {new VistaRegistro().setVisible(true);});
-        SwingUtilities.invokeLater(() -> {new VistaDashboard().setVisible(true);});
+        SwingUtilities.invokeLater(() -> {
+            new VistaLogin().setVisible(true);
+        });
+        SwingUtilities.invokeLater(() -> {
+            new VistaRegistro().setVisible(true);
+        });
+        SwingUtilities.invokeLater(() -> {
+            new VistaDashboard().setVisible(true);
+        });
     }
 }

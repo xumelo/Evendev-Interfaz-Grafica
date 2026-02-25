@@ -16,8 +16,8 @@ public class TarjetaEvento extends JPanel {
         this.precio=precio;
 
         this.setLayout(new BorderLayout());
-        this.setBorder(BorderFactory.createLineBorder(Color.yellow));
-//        this.setBorder(new CompoundBorder(new LineBorder(Color.LIGHT_GRAY, 1), new EmptyBorder(10,10,10,10)));
+        this.setBorder(BorderFactory.createLineBorder(Color.blue));
+
         JLabel lblPanel=new JLabel();
         JTextArea txtFecha=new JTextArea(fecha);
         lblPanel.add(txtFecha);

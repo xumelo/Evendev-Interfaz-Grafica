@@ -5,7 +5,17 @@ import java.awt.*;
 
 public class VistaRegistro extends JFrame {
     private Container lienzo = this.getContentPane();
-    public VistaRegistro(){
+    private JButton guardarButton;
+    private JButton cancelarButton;
+
+    JTextField nombreField;
+    JTextField emailField;
+    JPasswordField passwordField;
+    JPasswordField passwordConfirmarField;
+    JTextField edadField;
+
+
+    public VistaRegistro() {
         this.setTitle("Registro");
         this.setSize(400, 300);
 
@@ -13,54 +23,105 @@ public class VistaRegistro extends JFrame {
         this.setLocationRelativeTo(null);
 
         lienzo.setLayout(new BorderLayout(10, 10));
-        ((JPanel)this.getContentPane()).setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        ((JPanel) this.getContentPane()).setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         initUI();
     }
-    private void initUI(){
-        JPanel pnlFormulario=new JPanel();
-        pnlFormulario.setLayout(new GridLayout(5,5,5,5));
-        JLabel lblNombre = new JLabel("Nombre Completo:");
-        JTextField txtNombre = new JTextField();
-        JLabel lblEmail = new JLabel("Email:");
-        JTextField txtEmail = new JTextField();
-        JLabel lblPassword = new JLabel("Contraseña:");
-        JPasswordField txtPassword = new JPasswordField();
-        JLabel lblPasswordConfirmar = new JLabel("Confirmar Contraseña:");
-        JPasswordField txtPasswordConfirmar = new JPasswordField();
-        JLabel lblEdad = new JLabel("Edad:");
-        JTextField txtEdad = new JTextField();
 
-        pnlFormulario.add(lblNombre);
-        pnlFormulario.add(txtNombre);
-        pnlFormulario.add(lblEmail);
-        pnlFormulario.add(txtEmail);
-        pnlFormulario.add(lblPassword);
-        pnlFormulario.add(txtPassword);
-        pnlFormulario.add(lblPasswordConfirmar);
-        pnlFormulario.add(txtPasswordConfirmar);
-        pnlFormulario.add(lblEdad);
-        pnlFormulario.add(txtEdad);
-        lienzo.add(pnlFormulario, BorderLayout.CENTER);
+    private void initUI() {
+        JPanel formularioPanel = new JPanel();
+        formularioPanel.setLayout(new GridLayout(5, 5, 5, 5));
+        JLabel nombreLabel = new JLabel("Nombre Completo:");
+        nombreField = new JTextField();
+
+        JLabel emailLabel = new JLabel("Email:");
+        emailField = new JTextField();
+
+        JLabel passwordLabel = new JLabel("Contraseña:");
+        passwordField = new JPasswordField();
+
+        JLabel passwordConfirmarLabel = new JLabel("Confirmar Contraseña:");
+        passwordConfirmarField = new JPasswordField();
+
+        JLabel edadLabel = new JLabel("Edad:");
+        edadField = new JTextField();
+
+        formularioPanel.add(nombreLabel);
+        formularioPanel.add(nombreField);
+        formularioPanel.add(emailLabel);
+        formularioPanel.add(emailField);
+        formularioPanel.add(passwordLabel);
+        formularioPanel.add(passwordField);
+        formularioPanel.add(passwordConfirmarLabel);
+        formularioPanel.add(passwordConfirmarField);
+        formularioPanel.add(edadLabel);
+        formularioPanel.add(edadField);
+        lienzo.add(formularioPanel, BorderLayout.CENTER);
 
         //Botones
-        JPanel pnlBotones =new JPanel();
+        JPanel pnlBotones = new JPanel();
         //Alineacion al centro
         pnlBotones.setLayout(new FlowLayout(FlowLayout.CENTER));
         //Crear Botones
-        JButton btnGuardar=new JButton("Guardar");
-        JButton btnCancelar=new JButton("Cancelar");
-        pnlBotones.add(btnGuardar);
-        pnlBotones.add(btnCancelar);
-        lienzo.add(pnlBotones,BorderLayout.SOUTH);
+        guardarButton = new JButton("Guardar");
+        cancelarButton = new JButton("Cancelar");
+        pnlBotones.add(guardarButton);
+        pnlBotones.add(cancelarButton);
+        lienzo.add(pnlBotones, BorderLayout.SOUTH);
 
 
         //Titulo
-        JLabel lblTitulo = new JLabel("Registro a EventDEV");
+        JLabel tituloLabel = new JLabel("Registro a EventDEV");
         //Cambiar la fuente
-        lblTitulo.setFont(new Font("Arial", Font.BOLD, 18));
+        tituloLabel.setFont(new Font("Arial", Font.BOLD, 18));
         //Alineación horizontal al centro
-        lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
+        tituloLabel.setHorizontalAlignment(SwingConstants.CENTER);
         //Añadir la etiqueta a la zona NORTH
-        lienzo.add(lblTitulo, BorderLayout.NORTH);
+        lienzo.add(tituloLabel, BorderLayout.NORTH);
+        initListeners();
+    }
+
+    private void initListeners() {
+        guardarButton.addActionListener(e -> intentarGuardar());
+
+    }
+
+    private void intentarGuardar() {
+        String nombre = nombreField.getText().trim();
+        String email = emailField.getText().trim();
+        String password = passwordField.getText().trim();
+        String passwordConfirmar = passwordConfirmarField.getText().trim();
+        String edad = edadField.getText().trim();
+        boolean validacion = true;
+        if (nombre.isEmpty()) {
+            System.out.println("El nombre esta vacio");
+            validacion = false;
+        }
+        if (email.isEmpty()) {
+            System.out.println("El email esta vacio");
+            validacion = false;
+        }
+        if (password.isEmpty()) {
+            System.out.println("La contraseña esta vacia");
+            validacion = false;
+        }
+        if (!password.equals(passwordConfirmar)) {
+            System.out.println("Las contraseñas no coinciden");
+            validacion = false;
+        }
+        if (edad.isEmpty()) {
+            System.out.println("Edad esta vacio");
+            validacion = false;
+        }
+        if (validacion) {
+            JOptionPane.showMessageDialog(this,
+                    "¡Guardado Correctamente!",
+                    "Guardado",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "Error al guardar :(.",
+                    "Guardado denegado denegado",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
