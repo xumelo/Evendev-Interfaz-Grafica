@@ -78,11 +78,16 @@ public class VistaRegistro extends JFrame {
         //Añadir la etiqueta a la zona NORTH
         lienzo.add(tituloLabel, BorderLayout.NORTH);
         initListeners();
+
     }
 
     private void initListeners() {
         guardarButton.addActionListener(e -> intentarGuardar());
-
+        cancelarButton.addActionListener(e ->intentarCancelar());
+    }
+    private void intentarCancelar(){
+            this.dispose();
+            new VistaLogin().setVisible(true);
     }
 
     private void intentarGuardar() {
@@ -119,8 +124,8 @@ public class VistaRegistro extends JFrame {
                     JOptionPane.INFORMATION_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(this,
-                    "Error al guardar :(.",
-                    "Guardado denegado denegado",
+                    "Error al guardar :(",
+                    "Guardado denegado",
                     JOptionPane.ERROR_MESSAGE);
         }
     }

@@ -11,11 +11,11 @@ public class AppGUI {
         SwingUtilities.invokeLater(() -> {
             new VistaLogin().setVisible(true);
         });
-        SwingUtilities.invokeLater(() -> {
-            new VistaRegistro().setVisible(true);
-        });
-        SwingUtilities.invokeLater(() -> {
-            new VistaDashboard().setVisible(true);
-        });
+//        SwingUtilities.invokeLater(() -> {
+//            new VistaRegistro().setVisible(true);
+//        });
+//        SwingUtilities.invokeLater(() -> {
+//            new VistaDashboard("admin@eventdev.com").setVisible(true);
+//        });
     }
 }

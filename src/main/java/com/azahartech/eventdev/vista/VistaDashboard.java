@@ -5,12 +5,15 @@ import java.awt.*;
 
 public class VistaDashboard extends JFrame {
     private Container lienzo = this.getContentPane();
-    public VistaDashboard() {
+    private String nombreUsuario;
+    public VistaDashboard(String nombreUsuario) {
         this.setTitle("Panel");
+        this.nombreUsuario=nombreUsuario;
         this.setSize(800, 600);
         lienzo.setLayout(new BorderLayout(10, 10));
         this.setLocationRelativeTo(null);
         initUI();
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     private void initUI(){
         //Panel Barra Lateral
@@ -33,7 +36,7 @@ public class VistaDashboard extends JFrame {
 
         //Panel Barra Estado
         JPanel pnlBarraEstado=new JPanel();
-        JLabel lblUsuarioInvitado = new JLabel("Usuario Invitado");
+        JLabel lblUsuarioInvitado = new JLabel("Usuario: "+nombreUsuario);
         pnlBarraEstado.add(lblUsuarioInvitado);
         pnlBarraEstado.setLayout(new FlowLayout(FlowLayout.LEFT));
         lienzo.add(pnlBarraEstado,BorderLayout.SOUTH);
@@ -59,5 +62,15 @@ public class VistaDashboard extends JFrame {
         scroll.getVerticalScrollBar().setUnitIncrement(16);
         lienzo.add(scroll,BorderLayout.CENTER);
 
+        btnSalir.addActionListener(e -> {
+            int confirmar=JOptionPane.showConfirmDialog(this,
+                    "¿Seguro que quieres salir?",
+                    "Salir",
+                    JOptionPane.YES_NO_OPTION);
+            if (confirmar==JOptionPane.YES_NO_OPTION){
+                this.dispose();
+                new VistaLogin().setVisible(true);
+            }
+        });
     }
 }

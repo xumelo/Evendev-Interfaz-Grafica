@@ -1,9 +1,6 @@
 package com.azahartech.eventdev.vista;
 
 import javax.swing.*;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import java.awt.*;
 
 public class TarjetaEvento extends JPanel {
@@ -24,8 +21,9 @@ public class TarjetaEvento extends JPanel {
         this.add(txtFecha,BorderLayout.CENTER);
 
 
-        JButton btnComprar=new JButton("Comprar "+precio);
-        this.add(btnComprar,BorderLayout.SOUTH);
+        JButton comprarButton =new JButton("Comprar "+precio);
+        this.add(comprarButton,BorderLayout.SOUTH);
+
 
         JLabel lblTitulo=new JLabel(titulo);
         lblTitulo.setFont(new Font("Arial", Font.BOLD, 18));
@@ -33,8 +31,21 @@ public class TarjetaEvento extends JPanel {
         lblTitulo.setHorizontalAlignment(SwingConstants.LEFT);
         this.add(lblTitulo,BorderLayout.NORTH);
 
-
-
-
+        comprarButton.addActionListener(e -> {
+            // Simular compra
+            int opcion = JOptionPane.showConfirmDialog(this,
+                    "¿Quieres comprar una entrada para " + this.titulo + "?",
+                    "Confirmar Compra",
+                    JOptionPane.YES_NO_OPTION);
+            if (opcion == JOptionPane.YES_OPTION) {
+                JOptionPane.showMessageDialog(this,
+                        "¡Entrada comprada! (simulación)",
+                        "Éxito",
+                        JOptionPane.INFORMATION_MESSAGE);
+                // Opcional: Deshabilitar el botón para no comprar dos veces
+                comprarButton.setEnabled(false);
+                comprarButton.setText("Comprado");
+            }
+        });
     }
 }

@@ -60,6 +60,7 @@ public class VistaLogin extends JFrame {
         salirButton.addActionListener(e -> intentarSalir());
         contrasenyaField.addActionListener(e -> intentarLogin());
         loginButton.addActionListener(e -> intentarLogin());
+        registroButton.addActionListener(e -> intentarRegistro());
     }
     private void intentarLogin() {
 
@@ -70,6 +71,9 @@ public class VistaLogin extends JFrame {
                     "¡Bienvenido al sistema, Admin!",
                     "Acceso concedido",
                     JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+            VistaDashboard dashboard = new VistaDashboard(email);
+            dashboard.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this,
                     "Usuario o contraseña incorrectos.",
@@ -88,5 +92,11 @@ public class VistaLogin extends JFrame {
         if (confirmar == JOptionPane.YES_OPTION) {
             System.exit(0); // Cierra la JVM
         }
+    }
+    private void intentarRegistro(){
+        this.dispose();
+        VistaRegistro vistaRegistro = new VistaRegistro();
+        vistaRegistro.setVisible(true);
+
     }
 }
