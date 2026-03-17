@@ -1,17 +1,43 @@
 package com.azahartech.eventdev.vista;
 
+import com.azahartech.eventdev.modelo.Evento;
+import com.azahartech.eventdev.modelo.Partido;
+import com.azahartech.eventdev.modelo.Recinto;
+import com.azahartech.eventdev.servicio.ServicioEvento;
+
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.time.LocalDate;
 
 public class VistaDashboard extends JFrame {
     private Container lienzo = this.getContentPane();
     private String nombreUsuario;
+    private JButton salirButton;
+    private JMenuItem salirMenuItem;
+    private JButton detallesButton;
+    private JMenuItem cerrarSesionMenuItem;
+    private String[] nombresColumnas;
+    private DefaultTableModel eventosTableModel;
+    private JTable eventosTable;
+
     public VistaDashboard(String nombreUsuario) {
         this.setTitle("Panel");
         this.nombreUsuario=nombreUsuario;
         this.setSize(800, 600);
         lienzo.setLayout(new BorderLayout(10, 10));
         this.setLocationRelativeTo(null);
+        salirButton=new JButton("Salir");
+        detallesButton=new JButton("Ver Detalles");
+
+        nombresColumnas= new String[]{"ID", "Nombre", "Fecha", "Precio"};
+        eventosTableModel = new DefaultTableModel(nombresColumnas, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
         initUI();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
@@ -23,23 +49,24 @@ public class VistaDashboard extends JFrame {
         JButton btnCatalogo=new JButton("Catalogo");
         JButton btnEntradas =new JButton("Mis Entradas");
         JButton btnPerfil=new JButton("Perfil");
-        JButton btnSalir=new JButton("Salir");
+
 
         pnlBarraLateral.add(btnCatalogo);
         pnlBarraLateral.add(btnEntradas);
         pnlBarraLateral.add(btnPerfil);
-        pnlBarraLateral.add(btnSalir);
+        pnlBarraLateral.add(salirButton);
         GridLayout gridLayoutBarraLateral = new GridLayout(10,1);
         gridLayoutBarraLateral.setVgap(10);
         pnlBarraLateral.setLayout(gridLayoutBarraLateral);
         lienzo.add(pnlBarraLateral,BorderLayout.WEST);
 
         //Panel Barra Estado
-        JPanel pnlBarraEstado=new JPanel();
-        JLabel lblUsuarioInvitado = new JLabel("Usuario: "+nombreUsuario);
-        pnlBarraEstado.add(lblUsuarioInvitado);
-        pnlBarraEstado.setLayout(new FlowLayout(FlowLayout.LEFT));
-        lienzo.add(pnlBarraEstado,BorderLayout.SOUTH);
+        JPanel barraEstadoPanel =new JPanel();
+        JLabel usuarioInvitadoLabel = new JLabel("Usuario: "+nombreUsuario);
+        barraEstadoPanel.add(usuarioInvitadoLabel);
+        barraEstadoPanel.add(detallesButton);
+        barraEstadoPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+        lienzo.add(barraEstadoPanel,BorderLayout.SOUTH);
 
         //Panel Central
         JPanel pnlCentral=new JPanel();
@@ -53,24 +80,85 @@ public class VistaDashboard extends JFrame {
         listaPanel.setLayout(gridLayout);
         listaPanel.setBorder(BorderFactory.createCompoundBorder(listaPanel.getBorder(), BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 
-        for (int i=0;i<10;i++){
-            TarjetaEvento tarjeta1=new TarjetaEvento("Prueba1","2026-05-10","2.00");
+        ServicioEvento servicioEvento=new ServicioEvento();
+        for (int i=0;i<5;i++){
+            servicioEvento.registrarEvento(new Partido("Prueba"+i, LocalDate.now().plusDays(3+i),new Recinto("Caminas","Calle Gloria",1200),12.00+i, "Barcelona","Madrid",1000.00*i));
+            /*TarjetaEvento tarjeta1=new TarjetaEvento("Prueba1","2026-05-10","2.00");
             tarjeta1.setBorder(BorderFactory.createCompoundBorder(tarjeta1.getBorder(), BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-            listaPanel.add(tarjeta1);
+            listaPanel.add(tarjeta1);*/
         }
-        JScrollPane scroll = new JScrollPane(listaPanel);
+        for (Evento listaEvento:servicioEvento.listarTodosLosEventos()){
+            Object[] datos={listaEvento.getId(),listaEvento.getNombre(),listaEvento.getFecha(),listaEvento.getPrecio()};
+            eventosTableModel.addRow(datos);
+        }
+        eventosTable = new JTable(eventosTableModel);
+
+
+        JScrollPane scroll = new JScrollPane(eventosTable);
         scroll.getVerticalScrollBar().setUnitIncrement(16);
+
+        initMenu();
+        initListeners();
+
         lienzo.add(scroll,BorderLayout.CENTER);
 
-        btnSalir.addActionListener(e -> {
-            int confirmar=JOptionPane.showConfirmDialog(this,
-                    "¿Seguro que quieres salir?",
-                    "Salir",
-                    JOptionPane.YES_NO_OPTION);
-            if (confirmar==JOptionPane.YES_NO_OPTION){
-                this.dispose();
-                new VistaLogin().setVisible(true);
-            }
-        });
     }
+    private void initMenu(){
+        JMenuBar principalMenuBar=new JMenuBar();
+
+        JMenu archivoMenu=new JMenu("Archivo");
+        salirMenuItem=new JMenuItem("Salir");
+        cerrarSesionMenuItem=new JMenuItem("Cerrar Sesion");
+        archivoMenu.add(salirMenuItem);
+        archivoMenu.add(cerrarSesionMenuItem);
+
+        JMenu accionesMenu=new JMenu("Acciones");
+        JMenuItem nuevoEventoMenuItem=new JMenuItem("Nuevo Evento");
+        accionesMenu.add(nuevoEventoMenuItem);
+
+        principalMenuBar.add(archivoMenu,accionesMenu);
+        principalMenuBar.add(accionesMenu);
+
+        this.setJMenuBar(principalMenuBar);
+
+    }
+    //Liseners
+    private void initListeners() {
+        salirButton.addActionListener(e -> intentarSalir());
+        salirMenuItem.addActionListener(e->intentarSalir());
+        cerrarSesionMenuItem.addActionListener(e -> intentarCerrarSesion());
+        detallesButton.addActionListener(e -> intentarVerDetalle());
+    }
+    private void intentarSalir(){
+        // Preguntar antes de salir
+        int confirmar = JOptionPane.showConfirmDialog(this,
+                "¿Estás seguro de que quieres cerrar la aplicación?",
+                "Confirmar salida",
+                JOptionPane.YES_NO_OPTION);
+        if (confirmar == JOptionPane.YES_OPTION) {
+            System.exit(0); // Cierra la JVM
+        }
+    }
+    private void intentarCerrarSesion(){
+        this.dispose();
+        new VistaLogin().setVisible(true);
+    }
+    private void intentarVerDetalle(){
+        int filaSeleccionada = eventosTable.getSelectedRow();
+        if (filaSeleccionada == -1){
+            JOptionPane.showMessageDialog(this,
+                    "Error selecciona una opcion valida.",
+                    "Error de seleccion",
+                    JOptionPane.ERROR_MESSAGE);
+    }else {
+            String nombreEvento = eventosTable.getValueAt(filaSeleccionada, 1).toString();
+            String fechaEvento = eventosTable.getValueAt(filaSeleccionada, 2).toString();
+            String precioEvento = eventosTable.getValueAt(filaSeleccionada, 3).toString();
+            JOptionPane.showMessageDialog(this,
+                    "Nombre: "+nombreEvento+"" +
+                            "\nFecha: "+fechaEvento+"" +
+                            "\nPrecio:"+precioEvento,"Detalles Evento",1);
+
+        }
+}
 }

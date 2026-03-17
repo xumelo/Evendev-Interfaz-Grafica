@@ -66,7 +66,7 @@ public class VistaLogin extends JFrame {
 
         String email = emailField.getText();
         String contrasenya = new String(contrasenyaField.getPassword());
-        if (email.equals("admin@eventdev.com") && contrasenya.equals("1234")) {
+        if (email.equals("admin") && contrasenya.equals("1234")) {
             JOptionPane.showMessageDialog(this,
                     "¡Bienvenido al sistema, Admin!",
                     "Acceso concedido",
