@@ -1,14 +1,14 @@
 package com.azahartech.eventdev.presentacion;
 
-import com.azahartech.eventdev.vista.VistaDashboard;
+import com.azahartech.eventdev.servicio.ServicioEvento;
 import com.azahartech.eventdev.vista.VistaLogin;
-import com.azahartech.eventdev.vista.VistaRegistro;
 
 import javax.swing.*;
 
 public class AppGUI {
-    public static void main(String[] args) {
+    public final static ServicioEvento servicioPrincipal = new ServicioEvento();
 
+    public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             try {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -17,12 +17,5 @@ public class AppGUI {
             }
             new VistaLogin().setVisible(true);
         });
-/*
-        SwingUtilities.invokeLater(() -> {
-            new VistaRegistro().setVisible(true);
-        });
-        SwingUtilities.invokeLater(() -> {
-            new VistaDashboard("admin@eventdev.com").setVisible(true);
-        });*/
     }
 }

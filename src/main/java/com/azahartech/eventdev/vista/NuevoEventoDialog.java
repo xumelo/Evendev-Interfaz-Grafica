@@ -1,5 +1,10 @@
 package com.azahartech.eventdev.vista;
 
+import com.azahartech.eventdev.modelo.Partido;
+import com.azahartech.eventdev.modelo.Recinto;
+import com.azahartech.eventdev.presentacion.AppGUI;
+import com.azahartech.eventdev.servicio.ServicioEvento;
+
 import javax.swing.*;
 import java.awt.*;
 import java.time.LocalDate;
@@ -11,9 +16,11 @@ public class NuevoEventoDialog extends JDialog {
 
     private JButton guardarButton;
     private JButton cancelarButton;
+    private ServicioEvento servicioEvento;
 
     public NuevoEventoDialog(JFrame padre) {
         super(padre, "Nuevo evento", true);
+        servicioEvento= AppGUI.servicioPrincipal;
         initUI();
     }
     private void initUI(){
@@ -68,6 +75,8 @@ public class NuevoEventoDialog extends JDialog {
             String nombre = nombreField.getText().trim();
             LocalDate fecha =LocalDate.parse(fechaField.getText().trim());
             double precio = Double.parseDouble(precioField.getText().trim());
+            servicioEvento.registrarEvento(new Partido(nombre,fecha,new Recinto("Caminas","Calle Gloria",1200),precio, "Barcelona","Madrid",1000.00));
+            this.dispose();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

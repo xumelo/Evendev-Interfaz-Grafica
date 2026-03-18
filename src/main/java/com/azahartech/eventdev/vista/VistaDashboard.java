@@ -3,12 +3,15 @@ package com.azahartech.eventdev.vista;
 import com.azahartech.eventdev.modelo.Evento;
 import com.azahartech.eventdev.modelo.Partido;
 import com.azahartech.eventdev.modelo.Recinto;
+import com.azahartech.eventdev.presentacion.AppGUI;
 import com.azahartech.eventdev.servicio.ServicioEvento;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.time.LocalDate;
+
+import static com.azahartech.eventdev.presentacion.AppGUI.servicioPrincipal;
 
 public class VistaDashboard extends JFrame {
     private Container lienzo = this.getContentPane();
@@ -22,6 +25,9 @@ public class VistaDashboard extends JFrame {
     private DefaultTableModel eventosTableModel;
     private JTable eventosTable;
     private NuevoEventoDialog dialog;
+    private ServicioEvento servicioEvento;
+
+
 
     public VistaDashboard(String nombreUsuario) {
         this.setTitle("Panel");
@@ -31,6 +37,7 @@ public class VistaDashboard extends JFrame {
         this.setLocationRelativeTo(null);
         salirButton=new JButton("Salir");
         detallesButton=new JButton("Ver Detalles");
+        servicioEvento= servicioPrincipal;
 
         nombresColumnas= new String[]{"ID", "Nombre", "Fecha", "Precio"};
         eventosTableModel = new DefaultTableModel(nombresColumnas, 0) {
@@ -82,14 +89,14 @@ public class VistaDashboard extends JFrame {
         listaPanel.setLayout(gridLayout);
         listaPanel.setBorder(BorderFactory.createCompoundBorder(listaPanel.getBorder(), BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 
-        ServicioEvento servicioEvento=new ServicioEvento();
+        //ServicioEvento servicioPrincipal=new ServicioEvento();
         for (int i=0;i<5;i++){
-            servicioEvento.registrarEvento(new Partido("Prueba"+i, LocalDate.now().plusDays(3+i),new Recinto("Caminas","Calle Gloria",1200),12.00+i, "Barcelona","Madrid",1000.00*i));
+            servicioPrincipal.registrarEvento(new Partido("Prueba"+i, LocalDate.now().plusDays(3+i),new Recinto("Caminas","Calle Gloria",1200),12.00+i, "Barcelona","Madrid",1000.00*i));
             /*TarjetaEvento tarjeta1=new TarjetaEvento("Prueba1","2026-05-10","2.00");
             tarjeta1.setBorder(BorderFactory.createCompoundBorder(tarjeta1.getBorder(), BorderFactory.createEmptyBorder(10, 10, 10, 10)));
             listaPanel.add(tarjeta1);*/
         }
-        for (Evento listaEvento:servicioEvento.listarTodosLosEventos()){
+        for (Evento listaEvento: servicioPrincipal.listarTodosLosEventos()){
             Object[] datos={listaEvento.getId(),listaEvento.getNombre(),listaEvento.getFecha(),listaEvento.getPrecio()};
             eventosTableModel.addRow(datos);
         }
@@ -172,6 +179,11 @@ public class VistaDashboard extends JFrame {
         this.refrescarTabla();
     }
     private void refrescarTabla(){
-
+        eventosTableModel.setRowCount(0);
+        for (Evento listaEvento: servicioPrincipal.listarTodosLosEventos()){
+            Object[] datos={listaEvento.getId(),listaEvento.getNombre(),listaEvento.getFecha(),listaEvento.getPrecio()};
+            eventosTableModel.addRow(datos);
+        }
+        eventosTable = new JTable(eventosTableModel);
     }
 }
