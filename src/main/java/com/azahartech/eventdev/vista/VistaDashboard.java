@@ -17,9 +17,11 @@ public class VistaDashboard extends JFrame {
     private JMenuItem salirMenuItem;
     private JButton detallesButton;
     private JMenuItem cerrarSesionMenuItem;
+    private JMenuItem nuevoEventoMenuItem;
     private String[] nombresColumnas;
     private DefaultTableModel eventosTableModel;
     private JTable eventosTable;
+    private NuevoEventoDialog dialog;
 
     public VistaDashboard(String nombreUsuario) {
         this.setTitle("Panel");
@@ -91,6 +93,7 @@ public class VistaDashboard extends JFrame {
             Object[] datos={listaEvento.getId(),listaEvento.getNombre(),listaEvento.getFecha(),listaEvento.getPrecio()};
             eventosTableModel.addRow(datos);
         }
+
         eventosTable = new JTable(eventosTableModel);
 
 
@@ -113,10 +116,10 @@ public class VistaDashboard extends JFrame {
         archivoMenu.add(cerrarSesionMenuItem);
 
         JMenu accionesMenu=new JMenu("Acciones");
-        JMenuItem nuevoEventoMenuItem=new JMenuItem("Nuevo Evento");
+        nuevoEventoMenuItem=new JMenuItem("Nuevo Evento");
         accionesMenu.add(nuevoEventoMenuItem);
 
-        principalMenuBar.add(archivoMenu,accionesMenu);
+        principalMenuBar.add(archivoMenu);
         principalMenuBar.add(accionesMenu);
 
         this.setJMenuBar(principalMenuBar);
@@ -128,6 +131,7 @@ public class VistaDashboard extends JFrame {
         salirMenuItem.addActionListener(e->intentarSalir());
         cerrarSesionMenuItem.addActionListener(e -> intentarCerrarSesion());
         detallesButton.addActionListener(e -> intentarVerDetalle());
+        nuevoEventoMenuItem.addActionListener(e -> intentarNuevoEvento());
     }
     private void intentarSalir(){
         // Preguntar antes de salir
@@ -160,5 +164,14 @@ public class VistaDashboard extends JFrame {
                             "\nPrecio:"+precioEvento,"Detalles Evento",1);
 
         }
-}
+
+    }
+    private void intentarNuevoEvento(){
+       dialog = new NuevoEventoDialog(this);
+        dialog.setVisible(true);
+        this.refrescarTabla();
+    }
+    private void refrescarTabla(){
+
+    }
 }
