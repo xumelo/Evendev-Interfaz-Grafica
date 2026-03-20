@@ -97,6 +97,5 @@ public class VistaLogin extends JFrame {
         this.dispose();
         VistaRegistro vistaRegistro = new VistaRegistro();
         vistaRegistro.setVisible(true);
-
     }
 }

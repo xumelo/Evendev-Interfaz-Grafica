@@ -89,7 +89,7 @@ public class VistaDashboard extends JFrame {
         listaPanel.setLayout(gridLayout);
         listaPanel.setBorder(BorderFactory.createCompoundBorder(listaPanel.getBorder(), BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 
-        //ServicioEvento servicioPrincipal=new ServicioEvento();
+
         for (int i=0;i<5;i++){
             servicioPrincipal.registrarEvento(new Partido("Prueba"+i, LocalDate.now().plusDays(3+i),new Recinto("Caminas","Calle Gloria",1200),12.00+i, "Barcelona","Madrid",1000.00*i));
             /*TarjetaEvento tarjeta1=new TarjetaEvento("Prueba1","2026-05-10","2.00");

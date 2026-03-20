@@ -7,6 +7,8 @@ import com.azahartech.eventdev.servicio.ServicioEvento;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.time.LocalDate;
 
 public class NuevoEventoDialog extends JDialog {
@@ -21,6 +23,7 @@ public class NuevoEventoDialog extends JDialog {
     public NuevoEventoDialog(JFrame padre) {
         super(padre, "Nuevo evento", true);
         servicioEvento= AppGUI.servicioPrincipal;
+
         initUI();
     }
     private void initUI(){
@@ -35,6 +38,7 @@ public class NuevoEventoDialog extends JDialog {
 
         JLabel fechaLabel = new JLabel("Fecha:");
         this.fechaField = new JTextField();
+        fechaField.setToolTipText("Formato: AAAA-MM-DD");
 
         JLabel precioLabel = new JLabel("Precio:");
         this.precioField = new JTextField();
@@ -61,6 +65,20 @@ public class NuevoEventoDialog extends JDialog {
         pnlBotones.add(cancelarButton);
         principalPanel.add(pnlBotones, BorderLayout.SOUTH);
         this.setContentPane(principalPanel);
+
+        precioField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                String precio=precioField.getText();
+                try{
+                    Double.parseDouble(precio.replace(',','.'));
+                    precioField.setBackground(Color.WHITE);
+                }catch(NumberFormatException ex){
+                    precioField.setBackground(Color.PINK);
+                }
+            }
+        });
+
         initListeners();
     }
     private void initListeners() {
