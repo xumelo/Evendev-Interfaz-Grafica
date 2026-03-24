@@ -4,6 +4,7 @@ import com.azahartech.eventdev.modelo.*;
 import com.azahartech.eventdev.datos.RepositorioGenerico;
 
 import java.time.LocalDate;
+import java.io.*;
 import java.util.*;
 
 /**
@@ -117,6 +118,51 @@ public class ServicioEvento {
      */
     public List<Evento> listarTodosLosEventos(){
         return repo.listar();
+    }
+    public void importarEventosDesdeCSV(String rutaArchivo) {
+        File archivo = new File("datos/eventos_importar.csv");
+        if (!archivo.exists()) {
+            System.out.println("No hay datos para importar.");
+            return;
+        }
+        try (BufferedReader lector = new BufferedReader(new FileReader(archivo))) {
+            String linea;
+
+            while ((linea = lector.readLine()) != null) {
+                String[]datos=linea.split(";");
+                System.out.println("Leído: " + linea);
+                LocalDate fecha;
+                int aforo;
+                double precio;
+                String fechaStr =datos[2];
+                String aforoStr=datos[3];
+                String precioStr=datos[4];
+
+                try {
+                    fecha=LocalDate.parse(fechaStr);
+                } catch (Exception e) {
+                    System.out.println("Error en la fecha");
+                    fecha=null;
+                }
+                try {
+                    aforo=Integer.parseInt(aforoStr);
+                } catch (Exception e) {
+                    System.out.println("Error en el aforo");
+                    aforo=0;
+                }
+                try {
+                    precio=Double.parseDouble(precioStr);
+                } catch (Exception e) {
+                    System.out.println("Error en el precio");
+                    precio=0;
+                }
+                Evento nuevoEvento=new Partido(datos[0],fecha,new Recinto(null,datos[1], aforo),precio,null,null,0 );
+                this.repo.listar().add(nuevoEvento);
+                System.out.println("Importado: "+datos[0]);
+            }
+        } catch (IOException e) {
+            System.err.println("Error al leer el fichero: " + e.getMessage());
+        }
     }
 
     /**

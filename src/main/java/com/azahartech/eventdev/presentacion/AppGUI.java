@@ -9,6 +9,7 @@ public class AppGUI {
     public final static ServicioEvento servicioPrincipal = new ServicioEvento();
 
     public static void main(String[] args) {
+        servicioPrincipal.importarEventosDesdeCSV("datos/eventos_importar.csv");
         SwingUtilities.invokeLater(() -> {
             try {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
