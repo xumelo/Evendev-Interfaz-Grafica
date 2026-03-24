@@ -127,6 +127,7 @@ public class ServicioEvento {
         }
         try (BufferedReader lector = new BufferedReader(new FileReader(archivo))) {
             String linea;
+            System.out.println(lector.readLine());
 
             while ((linea = lector.readLine()) != null) {
                 String[]datos=linea.split(";");
