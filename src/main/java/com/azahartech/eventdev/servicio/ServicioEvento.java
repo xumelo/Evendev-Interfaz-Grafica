@@ -2,6 +2,7 @@ package com.azahartech.eventdev.servicio;
 
 import com.azahartech.eventdev.modelo.*;
 import com.azahartech.eventdev.datos.RepositorioGenerico;
+import com.azahartech.eventdev.util.UtilidadLog;
 
 import java.time.LocalDate;
 import java.io.*;
@@ -120,6 +121,7 @@ public class ServicioEvento {
         return repo.listar();
     }
     public void importarEventosDesdeCSV(String rutaArchivo) {
+        UtilidadLog LogUtil = null;
         File archivo = new File("datos/eventos_importar.csv");
         if (!archivo.exists()) {
             System.out.println("No hay datos para importar.");
@@ -130,40 +132,52 @@ public class ServicioEvento {
             System.out.println(lector.readLine());
 
             while ((linea = lector.readLine()) != null) {
-                String[]datos=linea.split(";");
+                String[] datos=new String[4];
+                datos=linea.split(";");
                 System.out.println("Leído: " + linea);
                 LocalDate fecha;
                 int aforo;
                 double precio;
-                String fechaStr =datos[2];
-                String aforoStr=datos[3];
-                String precioStr=datos[4];
+                String fechaStr;
+                String aforoStr;
+                String precioStr;
+
 
                 try {
+                    fechaStr =datos[2];
                     fecha=LocalDate.parse(fechaStr);
                 } catch (Exception e) {
                     System.out.println("Error en la fecha");
+                    LogUtil.registrar(NivelError.WARM,"ERROR: Fallo al importar línea del CSV: "+ e.getMessage());
                     fecha=null;
                 }
                 try {
+                    aforoStr=datos[3];
                     aforo=Integer.parseInt(aforoStr);
                 } catch (Exception e) {
                     System.out.println("Error en el aforo");
+                    LogUtil.registrar(NivelError.WARM,"ERROR: Fallo al importar línea del CSV: "+ e.getMessage());
                     aforo=0;
                 }
                 try {
+                    precioStr=datos[4];
                     precio=Double.parseDouble(precioStr);
                 } catch (Exception e) {
                     System.out.println("Error en el precio");
+                    LogUtil.registrar(NivelError.WARM,"ERROR: Fallo al importar línea del CSV: "+ e.getMessage());
                     precio=0;
                 }
                 Evento nuevoEvento=new Partido(datos[0],fecha,new Recinto(null,datos[1], aforo),precio,null,null,0 );
                 this.repo.listar().add(nuevoEvento);
-                System.out.println("Importado: "+datos[0]);
+                System.out.println();
+                LogUtil.registrar(NivelError.INFO,"Importado: Evento importado: "+datos[0]);
             }
         } catch (IOException e) {
             System.err.println("Error al leer el fichero: " + e.getMessage());
+            LogUtil.registrar(NivelError.ERROR,"ERROR: Fallo al importar el evento: "+ e.getMessage());
+
         }
+
     }
 
     /**
