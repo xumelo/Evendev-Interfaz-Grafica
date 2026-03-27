@@ -2,6 +2,7 @@ package com.azahartech.eventdev.modelo;
 
 import com.azahartech.eventdev.util.Exportable;
 
+import java.io.Serializable;
 import java.util.Arrays;
 /**
  *
@@ -10,7 +11,7 @@ import java.util.Arrays;
  *
  *
  */
-public class Recinto implements Exportable {
+public class Recinto implements Exportable, Serializable {
 
     private String nombre;
     private String direccion;

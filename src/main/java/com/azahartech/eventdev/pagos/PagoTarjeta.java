@@ -1,11 +1,13 @@
 package com.azahartech.eventdev.pagos;
 
+import java.io.Serializable;
+
 /**
  * Implementación del procesador de pagos mediante Tarjeta de credito/debito.
  * Realiza una validación básica del formato de la tarjeta y simula una tasa
  * de error aleatoria para representar fallos en la pasarela de pagos.
  */
-public class PagoTarjeta implements ProcesadorPago {
+public class PagoTarjeta implements ProcesadorPago, Serializable {
     /** Número de la tarjeta (debe contener 16 dígitos). */
     String numeroTarjeta;
     /** Fecha de caducidad de la tarjeta. */

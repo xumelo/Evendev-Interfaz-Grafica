@@ -19,53 +19,56 @@ public class App {
     private static boolean continuidad = true;
 
     public static void main(String[] args) {
-        boolean demo = false;
+//        boolean demo = false;
+//
+//        for (String arg : args) {
+//            if (arg.equalsIgnoreCase("--demo")) {
+//                demo = true;
+//            }
+//        }
+//
+//        System.out.println("""
+//                =====================================================
+//                     EVENTDEV V1.0 - SISTEMA DE GESTIÓN INTEGRAL
+//                =====================================================
+//                """);
+//
+//        if (demo) {
+//            generarDemo();
+//
+//        } else {
+//            System.out.println("[FASE 1: REGISTRO DE USUARIOS]");
+//            registrarUsuarios();
+//
+//            System.out.println("[FASE 2: REGISTRO DE EVENTOS]");
+//            registrarEventos();
+//        }
+//
+//        System.out.println("[FASE 3: CONTROL DE ESTADOS]");
+//        controlEstados();
+//
+//        System.out.println("[FASE 4: PASARELA DE PAGOS]");
+//        pasarelaPagos();
+//
+//        System.out.println("[FASE 4: CONSULTAS Y STREAMS]");
+//        consultasYStreams();
+//
+//        System.out.println("[FASE 5: EXPORTACIÓN POLIMÓRFICA]");
+//        exportacionPolimorfica();
+//
+//        System.out.println("[FASE 6: CIERRE ESPECÍFICO DE EVENTOS]");
+//        cierreEspecificoEventos();
+//
+//        System.out.println("""
+//                           =====================================================
+//                                           FIN DE LA DEMOSTRACIÓN
+//                           =====================================================
+//                           """);
+//
+//        SCANNER.close();
+        generarDemo();
+        SERVICIO_EVENTO.guardar();
 
-        for (String arg : args) {
-            if (arg.equalsIgnoreCase("--demo")) {
-                demo = true;
-            }
-        }
-
-        System.out.println("""
-                =====================================================
-                     EVENTDEV V1.0 - SISTEMA DE GESTIÓN INTEGRAL     
-                =====================================================
-                """);
-
-        if (demo) {
-            generarDemo();
-
-        } else {
-            System.out.println("[FASE 1: REGISTRO DE USUARIOS]");
-            registrarUsuarios();
-
-            System.out.println("[FASE 2: REGISTRO DE EVENTOS]");
-            registrarEventos();
-        }
-
-        System.out.println("[FASE 3: CONTROL DE ESTADOS]");
-        controlEstados();
-
-        System.out.println("[FASE 4: PASARELA DE PAGOS]");
-        pasarelaPagos();
-
-        System.out.println("[FASE 4: CONSULTAS Y STREAMS]");
-        consultasYStreams();
-
-        System.out.println("[FASE 5: EXPORTACIÓN POLIMÓRFICA]");
-        exportacionPolimorfica();
-
-        System.out.println("[FASE 6: CIERRE ESPECÍFICO DE EVENTOS]");
-        cierreEspecificoEventos();
-
-        System.out.println("""
-                           =====================================================
-                                           FIN DE LA DEMOSTRACIÓN
-                           =====================================================
-                           """);
-
-        SCANNER.close();
     }
     // [FASE 1: REGISTRO DE USUARIOS]
     private static void registrarUsuarios(){

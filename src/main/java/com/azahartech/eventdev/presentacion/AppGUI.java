@@ -26,5 +26,6 @@ public class AppGUI {
             }
             new VistaLogin().setVisible(true);
         });
+
     }
 }

@@ -1,10 +1,12 @@
 package com.azahartech.eventdev.pagos;
 
+import java.io.Serializable;
+
 /**
  * Implementación del procesador de pagos a través de PayPal.
  * Gestiona la transacción utilizando la cuenta de correo del usuario.
  */
-public class PagoPaypal implements ProcesadorPago {
+public class PagoPaypal implements ProcesadorPago, Serializable {
     String emailUsuario;
 
     /**

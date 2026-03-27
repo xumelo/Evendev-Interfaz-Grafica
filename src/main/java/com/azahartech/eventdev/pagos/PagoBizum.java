@@ -1,10 +1,12 @@
 package com.azahartech.eventdev.pagos;
 
+import java.io.Serializable;
+
 /**
  * Implementación del procesador de pagos mediante Bizum.
  * Valida el formato del número de teléfono y simula posibles errores de conexión.
  */
-public class PagoBizum implements ProcesadorPago {
+public class PagoBizum implements ProcesadorPago, Serializable {
     /** Número de teléfono asociado al usuario de Bizum. */
     String telefono;
     /** PIN de seguridad del usuario. */

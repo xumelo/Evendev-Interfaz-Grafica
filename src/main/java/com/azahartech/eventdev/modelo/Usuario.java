@@ -4,6 +4,7 @@ import com.azahartech.eventdev.pagos.ProcesadorPago;
 import com.azahartech.eventdev.util.Exportable;
 import com.azahartech.eventdev.util.UtilidadValidacion;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -16,7 +17,7 @@ import java.util.Objects;
  * @version 1.0
 
  */
-public class Usuario implements Exportable {
+public class Usuario implements Exportable, Serializable {
     private String nombre;
     private String email;
     private String telefono;

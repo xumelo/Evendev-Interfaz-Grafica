@@ -2,9 +2,10 @@ package com.azahartech.eventdev.modelo;
 
 import com.azahartech.eventdev.util.Exportable;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Concierto extends Evento implements Exportable {
+public class Concierto extends Evento implements Exportable, Serializable {
 
     // ATRIBUTOS
     private String bandaPrincipal;

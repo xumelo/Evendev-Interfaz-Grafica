@@ -1,11 +1,12 @@
 package com.azahartech.eventdev.modelo;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
  * Clase Partido
  */
-public class Partido extends Evento {
+public class Partido extends Evento implements Serializable {
     private String equipoLocal;
     private String equipoVisitante;
     private double costeSeguridad;
