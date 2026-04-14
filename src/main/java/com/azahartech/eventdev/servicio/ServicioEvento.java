@@ -18,6 +18,10 @@ public class ServicioEvento {
     private static final String CARPETA_RUTA = "datos";
     private static final String FICHERO_DATOS = "datos/eventos.dat";
 
+    public ServicioEvento(){
+        GestorPersistencia gestor= new GestorPersistencia();
+        this.repo.cargar(gestor.cargarDatos(FICHERO_DATOS));
+    }
     /**
      * Añadir un evento
      * @param nuevoEvento

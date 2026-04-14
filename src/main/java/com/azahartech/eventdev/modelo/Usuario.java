@@ -23,6 +23,15 @@ public class Usuario implements Exportable, Serializable {
     private String telefono;
     private boolean esVip;
     private ProcesadorPago tipoPago;
+    private transient int intentosLogin;
+
+    public int getIntentosLogin() {
+        return intentosLogin;
+    }
+
+    public void setIntentosLogin(int intentosLogin) {
+        this.intentosLogin = intentosLogin;
+    }
 
     /**
      * Crea una nuevo objeto Usuario con los parámetros especificados.
@@ -43,6 +52,7 @@ public class Usuario implements Exportable, Serializable {
         this.email = email;
         this.telefono = telefono;
         this.esVip = esVip;
+        intentosLogin=5;
     }
 
     /**
