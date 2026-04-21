@@ -1,9 +1,13 @@
 package com.azahartech.eventdev.servicio;
 
+import com.azahartech.eventdev.datos.ListaEventosWrapper;
 import com.azahartech.eventdev.modelo.*;
 import com.azahartech.eventdev.datos.RepositorioGenerico;
 import com.azahartech.eventdev.util.GestorPersistencia;
 import com.azahartech.eventdev.util.UtilidadLog;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Marshaller;
 
 import java.time.LocalDate;
 import java.io.*;
@@ -19,8 +23,8 @@ public class ServicioEvento {
     private static final String FICHERO_DATOS = "datos/eventos.dat";
 
     public ServicioEvento(){
-        GestorPersistencia gestor= new GestorPersistencia();
-        this.repo.cargar(gestor.cargarDatos(FICHERO_DATOS));
+//        GestorPersistencia gestor= new GestorPersistencia();
+//        this.repo.cargar(gestor.cargarDatos(FICHERO_DATOS));
     }
     /**
      * Añadir un evento
@@ -192,6 +196,23 @@ public class ServicioEvento {
         }
         GestorPersistencia gestor=new GestorPersistencia();
         gestor.guardarDatos(repo.listar(),FICHERO_DATOS);
+    }
+    public void exportarCatalogoAXML(String rutaArchivo){
+        try {
+            ListaEventosWrapper wrapper=new ListaEventosWrapper();
+            wrapper.setLista(this.repo.listar());
+            JAXBContext contexto=JAXBContext.newInstance(ListaEventosWrapper.class);
+            Marshaller marshaller = contexto.createMarshaller();
+
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+            marshaller.marshal(wrapper, new File(rutaArchivo));
+
+            // También podemos volcarlo a la consola para probar
+            marshaller.marshal(wrapper, System.out);
+        } catch (JAXBException e) {
+            System.err.println("Error al exportar: " + e.getMessage());
+        }
     }
 
     /**

@@ -67,16 +67,18 @@ public class App {
 //
 //        SCANNER.close();
 
+
         generarDemo();
-       SERVICIO_USUARIO.registrarUsuario(new Usuario("Usuario1", "Usuario1@usuario1.com", "612345678", false));
-       //SERVICIO_EVENTO.guardar();
-       SERVICIO_USUARIO.guardar();
-//        for (Evento evento : SERVICIO_EVENTO.listarTodosLosEventos()) {
+//       SERVICIO_USUARIO.registrarUsuario(new Usuario("Usuario1", "Usuario1@usuario1.com", "612345678", false));
+//       //SERVICIO_EVENTO.guardar();
+//       SERVICIO_USUARIO.guardar();
+//       for (Evento evento : SERVICIO_EVENTO.listarTodosLosEventos()) {
 //            System.out.println(evento.getNombre());
 //        }
-        for (Usuario usuario : SERVICIO_USUARIO.listarTodosLosUsuario()) {
-            System.out.println(usuario.getIntentosLogin());
-        }
+//        for (Usuario usuario : SERVICIO_USUARIO.listarTodosLosUsuario()) {
+//            System.out.println(usuario.getIntentosLogin());
+//        }
+        SERVICIO_EVENTO.exportarCatalogoAXML("datos/agenda_export.xml");
 
         // SERVICIO_USUARIO.listarTodosLosUsuario();
 
