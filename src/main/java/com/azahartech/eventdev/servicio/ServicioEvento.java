@@ -8,6 +8,7 @@ import com.azahartech.eventdev.util.UtilidadLog;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
+import jakarta.xml.bind.Unmarshaller;
 
 import java.time.LocalDate;
 import java.io.*;
@@ -212,6 +213,23 @@ public class ServicioEvento {
             marshaller.marshal(wrapper, System.out);
         } catch (JAXBException e) {
             System.err.println("Error al exportar: " + e.getMessage());
+        }
+    }
+    public void importarCatalogoDesdeXML(String ruta){
+        try {
+            File archivo = new File(ruta);
+            JAXBContext contexto = JAXBContext.newInstance(ListaEventosWrapper.class);
+
+            Unmarshaller unmarshaller = contexto.createUnmarshaller();
+
+            ListaEventosWrapper wrapper = (ListaEventosWrapper) unmarshaller.unmarshal(archivo);
+
+            ArrayList<Evento> listaImportada = (ArrayList<Evento>) wrapper.getLista();
+            this.repo.guardar(listaImportada);
+
+            System.out.println("Se han importado " + listaImportada.size() + " eventos.");
+        } catch (JAXBException e) {
+            System.err.println("Error al importar: " + e);
         }
     }
 

@@ -4,6 +4,7 @@ import com.azahartech.eventdev.modelo.Evento;
 import com.azahartech.eventdev.modelo.NivelError;
 import com.azahartech.eventdev.servicio.ServicioEvento;
 import com.azahartech.eventdev.util.UtilidadLog;
+import com.azahartech.eventdev.vista.VistaDashboard;
 import com.azahartech.eventdev.vista.VistaLogin;
 
 import javax.swing.*;

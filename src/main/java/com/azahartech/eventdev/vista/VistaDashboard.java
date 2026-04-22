@@ -3,12 +3,13 @@ package com.azahartech.eventdev.vista;
 import com.azahartech.eventdev.modelo.Evento;
 import com.azahartech.eventdev.modelo.Partido;
 import com.azahartech.eventdev.modelo.Recinto;
-import com.azahartech.eventdev.presentacion.AppGUI;
 import com.azahartech.eventdev.servicio.ServicioEvento;
 
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.io.File;
 import java.time.LocalDate;
 
 import static com.azahartech.eventdev.presentacion.AppGUI.servicioPrincipal;
@@ -26,6 +27,8 @@ public class VistaDashboard extends JFrame {
     private JTable eventosTable;
     private NuevoEventoDialog dialog;
     private ServicioEvento servicioEvento;
+    private JMenuItem importarXmlMenuItem;
+    private JMenuItem exportarXmlMenuItem;
 
 
 
@@ -50,19 +53,20 @@ public class VistaDashboard extends JFrame {
         initUI();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+
     private void initUI(){
         //Panel Barra Lateral
         JPanel pnlBarraLateral =new JPanel();
         pnlBarraLateral.setBackground(Color.red);
 
-        JButton btnCatalogo=new JButton("Catalogo");
-        JButton btnEntradas =new JButton("Mis Entradas");
-        JButton btnPerfil=new JButton("Perfil");
+        JButton catalogoButton =new JButton("Catalogo");
+        JButton entradasButton =new JButton("Mis Entradas");
+        JButton perfilButton =new JButton("Perfil");
 
 
-        pnlBarraLateral.add(btnCatalogo);
-        pnlBarraLateral.add(btnEntradas);
-        pnlBarraLateral.add(btnPerfil);
+        pnlBarraLateral.add(catalogoButton);
+        pnlBarraLateral.add(entradasButton);
+        pnlBarraLateral.add(perfilButton);
         pnlBarraLateral.add(salirButton);
         GridLayout gridLayoutBarraLateral = new GridLayout(10,1);
         gridLayoutBarraLateral.setVgap(10);
@@ -124,7 +128,11 @@ public class VistaDashboard extends JFrame {
 
         JMenu accionesMenu=new JMenu("Acciones");
         nuevoEventoMenuItem=new JMenuItem("Nuevo Evento");
+        importarXmlMenuItem=new JMenuItem("Importar XML");
+        exportarXmlMenuItem=new JMenuItem("Exportar XML");
         accionesMenu.add(nuevoEventoMenuItem);
+        accionesMenu.add(importarXmlMenuItem);
+        accionesMenu.add(exportarXmlMenuItem);
 
         principalMenuBar.add(archivoMenu);
         principalMenuBar.add(accionesMenu);
@@ -139,6 +147,8 @@ public class VistaDashboard extends JFrame {
         cerrarSesionMenuItem.addActionListener(e -> intentarCerrarSesion());
         detallesButton.addActionListener(e -> intentarVerDetalle());
         nuevoEventoMenuItem.addActionListener(e -> intentarNuevoEvento());
+        importarXmlMenuItem.addActionListener(e-> intentarImportar());
+        exportarXmlMenuItem.addActionListener(e->intetarExportar());
     }
     private void intentarSalir(){
         // Preguntar antes de salir
@@ -149,6 +159,18 @@ public class VistaDashboard extends JFrame {
         if (confirmar == JOptionPane.YES_OPTION) {
             System.exit(0); // Cierra la JVM
         }
+    }
+    private void intentarImportar(){
+        JFileChooser fileChooser=new JFileChooser();
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        fileChooser.setFileFilter(new FileNameExtensionFilter("Archivo XML","xml"));
+        fileChooser.showOpenDialog(this);
+        File f = fileChooser.getSelectedFile();
+        servicioPrincipal.importarCatalogoDesdeXML(f.getAbsolutePath());
+        refrescarTabla();
+    }
+    private void intetarExportar(){
+
     }
     private void intentarCerrarSesion(){
         this.dispose();

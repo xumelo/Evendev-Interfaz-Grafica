@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<catalogo_eventos>
+    <evento xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="concierto" id="EVT-2026-COEV1">
+        <nombre>Concierto Evento 1</nombre>
+        <fecha>2021-12-31</fecha>
+        <recinto>
+            <aforoMaximo>100</aforoMaximo>
+            <direccion>direccion1</direccion>
+            <nombre>recinto1</nombre>
+        </recinto>
+        <precio>100.0</precio>
+        <estado>PLANIFICADO</estado>
+        <tipo>CONCIERTO</tipo>
+        <bandaPrincipal>Banda1</bandaPrincipal>
+        <costeMontaje>2000.0</costeMontaje>
+        <listaCanciones>Cancion1, Cancion2, Cancion23</listaCanciones>
+    </evento>
+    <evento xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="concierto" id="EVT-2026-COEV3">
+        <nombre>Concierto Evento 3</nombre>
+        <fecha>2033-12-31</fecha>
+        <recinto>
+            <aforoMaximo>120</aforoMaximo>
+            <direccion>direccion3</direccion>
+            <nombre>recinto3</nombre>
+        </recinto>
+        <precio>120.0</precio>
+        <estado>PLANIFICADO</estado>
+        <tipo>CONCIERTO</tipo>
+        <bandaPrincipal>Banda2</bandaPrincipal>
+        <costeMontaje>4000.0</costeMontaje>
+        <listaCanciones>Cancion5, Cancion6, Cancion31</listaCanciones>
+    </evento>
+    <evento xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="concierto" id="EVT-2026-COEV5">
+        <nombre>Concierto Evento 5</nombre>
+        <fecha>2026-12-31</fecha>
+        <recinto>
+            <aforoMaximo>140</aforoMaximo>
+            <direccion>direccion5</direccion>
+            <nombre>recinto5</nombre>
+        </recinto>
+        <precio>140.0</precio>
+        <estado>PLANIFICADO</estado>
+        <tipo>CONCIERTO</tipo>
+        <bandaPrincipal>Banda3</bandaPrincipal>
+        <costeMontaje>20000.0</costeMontaje>
+        <listaCanciones>Cancion2, Cancion23, Cancion13</listaCanciones>
+    </evento>
+    <evento xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="concierto" id="EVT-2026-COEV7">
+        <nombre>Concierto Evento 7</nombre>
+        <fecha>2027-12-31</fecha>
+        <recinto>
+            <aforoMaximo>160</aforoMaximo>
+            <direccion>direccion7</direccion>
+            <nombre>recinto7</nombre>
+        </recinto>
+        <precio>160.0</precio>
+        <estado>PLANIFICADO</estado>
+        <tipo>CONCIERTO</tipo>
+        <bandaPrincipal>Banda4</bandaPrincipal>
+        <costeMontaje>7000.0</costeMontaje>
+        <listaCanciones>Cancion6, Cancion23, Cancion35</listaCanciones>
+    </evento>
+    <evento xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="partido" id="EVT-2026-PAEV2">
+        <nombre>Partido Evento 2</nombre>
+        <fecha>2022-12-31</fecha>
+        <recinto>
+            <aforoMaximo>110</aforoMaximo>
+            <direccion>direccion2</direccion>
+            <nombre>recinto2</nombre>
+        </recinto>
+        <precio>110.0</precio>
+        <estado>PLANIFICADO</estado>
+        <tipo>DEPORTE</tipo>
+        <equipoLocal>equipoLocal1</equipoLocal>
+        <equipoVisitante>EquipoVisitante1</equipoVisitante>
+        <costeSeguridad>7000.0</costeSeguridad>
+        <costeArbitraje>0.0</costeArbitraje>
+    </evento>
+    <evento xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="partido" id="EVT-2026-PAEV4">
+        <nombre>Partido Evento 4</nombre>
+        <fecha>2031-12-31</fecha>
+        <recinto>
+            <aforoMaximo>130</aforoMaximo>
+            <direccion>direccion4</direccion>
+            <nombre>recinto4</nombre>
+        </recinto>
+        <precio>130.0</precio>
+        <estado>PLANIFICADO</estado>
+        <tipo>DEPORTE</tipo>
+        <equipoLocal>equipoLocal2</equipoLocal>
+        <equipoVisitante>EquipoVisitante2</equipoVisitante>
+        <costeSeguridad>70000.0</costeSeguridad>
+        <costeArbitraje>0.0</costeArbitraje>
+    </evento>
+    <evento xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="partido" id="EVT-2026-PAEV6">
+        <nombre>Partido Evento 6</nombre>
+        <fecha>2026-12-31</fecha>
+        <recinto>
+            <aforoMaximo>150</aforoMaximo>
+            <direccion>direccion6</direccion>
+            <nombre>recinto6</nombre>
+        </recinto>
+        <precio>150.0</precio>
+        <estado>PLANIFICADO</estado>
+        <tipo>DEPORTE</tipo>
+        <equipoLocal>equipoLocal3</equipoLocal>
+        <equipoVisitante>EquipoVisitante3</equipoVisitante>
+        <costeSeguridad>17000.0</costeSeguridad>
+        <costeArbitraje>0.0</costeArbitraje>
+    </evento>
+    <evento xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="partido" id="EVT-2026-PAEV8">
+        <nombre>Partido Evento 8</nombre>
+        <fecha>2027-12-31</fecha>
+        <recinto>
+            <aforoMaximo>170</aforoMaximo>
+            <direccion>direccion8</direccion>
+            <nombre>recinto8</nombre>
+        </recinto>
+        <precio>170.0</precio>
+        <estado>PLANIFICADO</estado>
+        <tipo>DEPORTE</tipo>
+        <equipoLocal>equipoLocal4</equipoLocal>
+        <equipoVisitante>EquipoVisitante4</equipoVisitante>
+        <costeSeguridad>27000.0</costeSeguridad>
+        <costeArbitraje>0.0</costeArbitraje>
+    </evento>
+</catalogo_eventos>

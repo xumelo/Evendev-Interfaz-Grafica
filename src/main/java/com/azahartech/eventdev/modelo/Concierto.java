@@ -1,10 +1,15 @@
 package com.azahartech.eventdev.modelo;
 
 import com.azahartech.eventdev.util.Exportable;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
+@XmlRootElement()
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Concierto extends Evento implements Exportable, Serializable {
 
     // ATRIBUTOS
@@ -12,6 +17,7 @@ public class Concierto extends Evento implements Exportable, Serializable {
     private double costeMontaje;
     private String listaCanciones;
 
+    public Concierto(){}
     // CONSTRUCTOR
     public Concierto(String nombre, LocalDate fecha, Recinto recinto, double precioEntrada, TipoEvento tipoEvento,
                      String bandaPrincipal, double costeMontaje, String listaCanciones) {
