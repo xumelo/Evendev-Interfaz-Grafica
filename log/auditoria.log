@@ -84,3 +84,57 @@
 [2026-04-24 18:28:49] [WARM] ERROR: Fallo al importar línea del CSV: Index 4 out of bounds for length 2
 [2026-04-24 18:28:49] [INFO] Importado: Evento importado: Barcelona
 [2026-04-24 18:28:49] [INFO] Inicio de la aplicación
+[2026-04-24 18:35:24] [INFO] Importado: Evento importado: Feria del Libro
+[2026-04-24 18:35:24] [INFO] Importado: Evento importado: Concierto de Rock
+[2026-04-24 18:35:24] [INFO] Importado: Evento importado: Partidazo
+[2026-04-24 18:35:24] [INFO] Importado: Evento importado: Gamergi
+[2026-04-24 18:35:24] [WARM] ERROR: Fallo al importar línea del CSV: Index 2 out of bounds for length 2
+[2026-04-24 18:35:24] [WARM] ERROR: Fallo al importar línea del CSV: Index 3 out of bounds for length 2
+[2026-04-24 18:35:24] [WARM] ERROR: Fallo al importar línea del CSV: Index 4 out of bounds for length 2
+[2026-04-24 18:35:24] [INFO] Importado: Evento importado: Barcelona
+[2026-04-24 18:35:24] [INFO] Inicio de la aplicación
+[2026-04-24 19:1:46] [INFO] Importado: Evento importado: Feria del Libro
+[2026-04-24 19:1:46] [INFO] Importado: Evento importado: Concierto de Rock
+[2026-04-24 19:1:46] [INFO] Importado: Evento importado: Partidazo
+[2026-04-24 19:1:46] [INFO] Importado: Evento importado: Gamergi
+[2026-04-24 19:1:46] [WARM] ERROR: Fallo al importar línea del CSV: Index 2 out of bounds for length 2
+[2026-04-24 19:1:46] [WARM] ERROR: Fallo al importar línea del CSV: Index 3 out of bounds for length 2
+[2026-04-24 19:1:46] [WARM] ERROR: Fallo al importar línea del CSV: Index 4 out of bounds for length 2
+[2026-04-24 19:1:46] [INFO] Importado: Evento importado: Barcelona
+[2026-04-24 19:1:46] [INFO] Inicio de la aplicación
+[2026-04-24 19:4:46] [INFO] Importado: Evento importado: Feria del Libro
+[2026-04-24 19:4:46] [INFO] Importado: Evento importado: Concierto de Rock
+[2026-04-24 19:4:46] [INFO] Importado: Evento importado: Partidazo
+[2026-04-24 19:4:46] [INFO] Importado: Evento importado: Gamergi
+[2026-04-24 19:4:46] [WARM] ERROR: Fallo al importar línea del CSV: Index 2 out of bounds for length 2
+[2026-04-24 19:4:46] [WARM] ERROR: Fallo al importar línea del CSV: Index 3 out of bounds for length 2
+[2026-04-24 19:4:46] [WARM] ERROR: Fallo al importar línea del CSV: Index 4 out of bounds for length 2
+[2026-04-24 19:4:46] [INFO] Importado: Evento importado: Barcelona
+[2026-04-24 19:4:46] [INFO] Inicio de la aplicación
+[2026-04-24 19:5:59] [INFO] Importado: Evento importado: Feria del Libro
+[2026-04-24 19:5:59] [INFO] Importado: Evento importado: Concierto de Rock
+[2026-04-24 19:5:59] [INFO] Importado: Evento importado: Partidazo
+[2026-04-24 19:5:59] [INFO] Importado: Evento importado: Gamergi
+[2026-04-24 19:5:59] [WARM] ERROR: Fallo al importar línea del CSV: Index 2 out of bounds for length 2
+[2026-04-24 19:5:59] [WARM] ERROR: Fallo al importar línea del CSV: Index 3 out of bounds for length 2
+[2026-04-24 19:5:59] [WARM] ERROR: Fallo al importar línea del CSV: Index 4 out of bounds for length 2
+[2026-04-24 19:5:59] [INFO] Importado: Evento importado: Barcelona
+[2026-04-24 19:5:59] [INFO] Inicio de la aplicación
+[2026-04-24 19:6:11] [INFO] Importado: Evento importado: Feria del Libro
+[2026-04-24 19:6:11] [INFO] Importado: Evento importado: Concierto de Rock
+[2026-04-24 19:6:11] [INFO] Importado: Evento importado: Partidazo
+[2026-04-24 19:6:11] [INFO] Importado: Evento importado: Gamergi
+[2026-04-24 19:6:11] [WARM] ERROR: Fallo al importar línea del CSV: Index 2 out of bounds for length 2
+[2026-04-24 19:6:11] [WARM] ERROR: Fallo al importar línea del CSV: Index 3 out of bounds for length 2
+[2026-04-24 19:6:11] [WARM] ERROR: Fallo al importar línea del CSV: Index 4 out of bounds for length 2
+[2026-04-24 19:6:11] [INFO] Importado: Evento importado: Barcelona
+[2026-04-24 19:6:11] [INFO] Inicio de la aplicación
+[2026-04-24 19:13:11] [INFO] Importado: Evento importado: Feria del Libro
+[2026-04-24 19:13:11] [INFO] Importado: Evento importado: Concierto de Rock
+[2026-04-24 19:13:11] [INFO] Importado: Evento importado: Partidazo
+[2026-04-24 19:13:11] [INFO] Importado: Evento importado: Gamergi
+[2026-04-24 19:13:11] [WARM] ERROR: Fallo al importar línea del CSV: Index 2 out of bounds for length 2
+[2026-04-24 19:13:11] [WARM] ERROR: Fallo al importar línea del CSV: Index 3 out of bounds for length 2
+[2026-04-24 19:13:11] [WARM] ERROR: Fallo al importar línea del CSV: Index 4 out of bounds for length 2
+[2026-04-24 19:13:11] [INFO] Importado: Evento importado: Barcelona
+[2026-04-24 19:13:11] [INFO] Inicio de la aplicación

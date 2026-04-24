@@ -96,9 +96,6 @@ public class VistaDashboard extends JFrame {
 
         for (int i=0;i<5;i++){
             servicioPrincipal.registrarEvento(new Partido("Prueba"+i, LocalDate.now().plusDays(3+i),new Recinto("Caminas","Calle Gloria",1200),12.00+i, "Barcelona","Madrid",1000.00*i));
-            /*TarjetaEvento tarjeta1=new TarjetaEvento("Prueba1","2026-05-10","2.00");
-            tarjeta1.setBorder(BorderFactory.createCompoundBorder(tarjeta1.getBorder(), BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-            listaPanel.add(tarjeta1);*/
         }
         for (Evento listaEvento: servicioPrincipal.listarTodosLosEventos()){
             Object[] datos={listaEvento.getId(),listaEvento.getNombre(),listaEvento.getFecha(),listaEvento.getPrecio()};
@@ -111,11 +108,11 @@ public class VistaDashboard extends JFrame {
         JScrollPane scroll = new JScrollPane(eventosTable);
         scroll.getVerticalScrollBar().setUnitIncrement(16);
 
-        initMenu();
-        initListeners();
 
         lienzo.add(scroll,BorderLayout.CENTER);
 
+        initMenu();
+        initListeners();
     }
     private void initMenu(){
         JMenuBar principalMenuBar=new JMenuBar();
@@ -166,7 +163,13 @@ public class VistaDashboard extends JFrame {
         fileChooser.setFileFilter(new FileNameExtensionFilter("Archivo XML","xml"));
         fileChooser.showOpenDialog(this);
         File f = fileChooser.getSelectedFile();
-        servicioPrincipal.importarCatalogoDesdeXML(f.getAbsolutePath());
+        try {
+            servicioPrincipal.importarCatalogoDesdeXML(f.getAbsolutePath());
+            JOptionPane.showMessageDialog(this,"Archivo importado con exito");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,"Error al importar");
+        }
+
         refrescarTabla();
     }
     private void intetarExportar(){
@@ -175,8 +178,9 @@ public class VistaDashboard extends JFrame {
         File f=fileChooser.getSelectedFile();
         try {
             servicioPrincipal.exportarCatalogoAXML(f.getAbsolutePath()+".xml");
+            JOptionPane.showMessageDialog(this,"Archivo exportado con exito");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,"Error");
+            JOptionPane.showMessageDialog(this,"Error al exportar");
         }
     }
     private void intentarCerrarSesion(){
@@ -208,11 +212,10 @@ public class VistaDashboard extends JFrame {
         this.refrescarTabla();
     }
     private void refrescarTabla(){
-        eventosTableModel.setRowCount(0);
+        eventosTableModel.setRowCount(0); // Borra las filas actuales
         for (Evento listaEvento: servicioPrincipal.listarTodosLosEventos()){
             Object[] datos={listaEvento.getId(),listaEvento.getNombre(),listaEvento.getFecha(),listaEvento.getPrecio()};
-            eventosTableModel.addRow(datos);
+            eventosTableModel.addRow(datos); // Añade las nuevas filas
         }
-        eventosTable = new JTable(eventosTableModel);
     }
 }
