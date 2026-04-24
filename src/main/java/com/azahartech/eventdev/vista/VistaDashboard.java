@@ -170,7 +170,14 @@ public class VistaDashboard extends JFrame {
         refrescarTabla();
     }
     private void intetarExportar(){
-
+        JFileChooser fileChooser=new JFileChooser();
+        fileChooser.showSaveDialog(this);
+        File f=fileChooser.getSelectedFile();
+        try {
+            servicioPrincipal.exportarCatalogoAXML(f.getAbsolutePath()+".xml");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,"Error");
+        }
     }
     private void intentarCerrarSesion(){
         this.dispose();

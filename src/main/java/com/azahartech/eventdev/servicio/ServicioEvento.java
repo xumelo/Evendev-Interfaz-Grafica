@@ -209,7 +209,6 @@ public class ServicioEvento {
 
             marshaller.marshal(wrapper, new File(rutaArchivo));
 
-            // También podemos volcarlo a la consola para probar
             marshaller.marshal(wrapper, System.out);
         } catch (JAXBException e) {
             System.err.println("Error al exportar: " + e.getMessage());
