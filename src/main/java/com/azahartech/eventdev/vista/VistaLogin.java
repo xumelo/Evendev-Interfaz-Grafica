@@ -23,11 +23,11 @@ public class VistaLogin extends JFrame {
 
         JPanel formularioPanel =new JPanel();
         formularioPanel.setLayout(new GridLayout(2,2,5,5));
-        JLabel emailLabel = new JLabel("Email:");
+        JLabel usuarioLabel = new JLabel("Usuario:");
         this.emailField = new JTextField();
         JLabel passwordLabel = new JLabel("Contraseña:");
         this.contrasenyaField = new JPasswordField();
-        formularioPanel.add(emailLabel);
+        formularioPanel.add(usuarioLabel);
         formularioPanel.add(emailField);
         formularioPanel.add(passwordLabel);
         formularioPanel.add(contrasenyaField);

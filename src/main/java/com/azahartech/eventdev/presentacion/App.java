@@ -68,7 +68,7 @@ public class App {
 //        SCANNER.close();
 
 
-       generarDemo();
+      // generarDemo();
 //       SERVICIO_USUARIO.registrarUsuario(new Usuario("Usuario1", "Usuario1@usuario1.com", "612345678", false));
 //       //SERVICIO_EVENTO.guardar();
 //       SERVICIO_USUARIO.guardar();

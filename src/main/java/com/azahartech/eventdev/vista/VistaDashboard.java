@@ -49,8 +49,8 @@ public class VistaDashboard extends JFrame {
                 return false;
             }
         };
-
         initUI();
+        refrescarTabla();
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
@@ -94,13 +94,13 @@ public class VistaDashboard extends JFrame {
         listaPanel.setBorder(BorderFactory.createCompoundBorder(listaPanel.getBorder(), BorderFactory.createEmptyBorder(10, 10, 10, 10)));
 
 
-        for (int i=0;i<5;i++){
-            servicioPrincipal.registrarEvento(new Partido("Prueba"+i, LocalDate.now().plusDays(3+i),new Recinto("Caminas","Calle Gloria",1200),12.00+i, "Barcelona","Madrid",1000.00*i));
-        }
-        for (Evento listaEvento: servicioPrincipal.listarTodosLosEventos()){
-            Object[] datos={listaEvento.getId(),listaEvento.getNombre(),listaEvento.getFecha(),listaEvento.getPrecio()};
-            eventosTableModel.addRow(datos);
-        }
+//        for (int i=0;i<5;i++){
+//            servicioPrincipal.registrarEvento(new Partido("Prueba"+i, LocalDate.now().plusDays(3+i),new Recinto("Caminas","Calle Gloria",1200),12.00+i, "Barcelona","Madrid",1000.00*i));
+//        }
+//        for (Evento listaEvento: servicioPrincipal.listarTodosLosEventos()){
+//            Object[] datos={listaEvento.getId(),listaEvento.getNombre(),listaEvento.getFecha(),listaEvento.getPrecio()};
+//            eventosTableModel.addRow(datos);
+//        }
 
         eventosTable = new JTable(eventosTableModel);
 
@@ -117,20 +117,25 @@ public class VistaDashboard extends JFrame {
     private void initMenu(){
         JMenuBar principalMenuBar=new JMenuBar();
 
-        JMenu archivoMenu=new JMenu("Archivo");
+
+
+        JMenu salirMenu=new JMenu("≡");
         salirMenuItem=new JMenuItem("Salir");
         cerrarSesionMenuItem=new JMenuItem("Cerrar Sesion");
-        archivoMenu.add(salirMenuItem);
-        archivoMenu.add(cerrarSesionMenuItem);
+        salirMenu.add(salirMenuItem);
+        salirMenu.add(cerrarSesionMenuItem);
 
         JMenu accionesMenu=new JMenu("Acciones");
         nuevoEventoMenuItem=new JMenuItem("Nuevo Evento");
+        accionesMenu.add(nuevoEventoMenuItem);
+
+        JMenu archivoMenu=new JMenu("Archivo");
         importarXmlMenuItem=new JMenuItem("Importar XML");
         exportarXmlMenuItem=new JMenuItem("Exportar XML");
-        accionesMenu.add(nuevoEventoMenuItem);
-        accionesMenu.add(importarXmlMenuItem);
-        accionesMenu.add(exportarXmlMenuItem);
+        archivoMenu.add(importarXmlMenuItem);
+        archivoMenu.add(exportarXmlMenuItem);
 
+        principalMenuBar.add(salirMenu);
         principalMenuBar.add(archivoMenu);
         principalMenuBar.add(accionesMenu);
 
@@ -186,6 +191,7 @@ public class VistaDashboard extends JFrame {
     private void intentarCerrarSesion(){
         this.dispose();
         new VistaLogin().setVisible(true);
+
     }
     private void intentarVerDetalle(){
         int filaSeleccionada = eventosTable.getSelectedRow();
